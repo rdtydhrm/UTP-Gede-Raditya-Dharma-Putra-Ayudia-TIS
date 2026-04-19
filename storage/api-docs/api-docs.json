@@ -1,0 +1,273 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "UTP TIS - Ecommerce API",
+        "description": "Simple Ecommerce-like Backend API menggunakan Laravel dengan mock data JSON",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Local Dev Server"
+        }
+    ],
+    "paths": {
+        "/api/items": {
+            "get": {
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Tampilkan semua item",
+                "operationId": "2cbf07eb95d033f8775c36424ac8fa06",
+                "responses": {
+                    "200": {
+                        "description": "Daftar semua item"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Tambah item baru",
+                "operationId": "af37857663e6805dd367a55f374c9ee1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama_barang",
+                                    "harga"
+                                ],
+                                "properties": {
+                                    "nama_barang": {
+                                        "type": "string",
+                                        "example": "Laptop"
+                                    },
+                                    "harga": {
+                                        "type": "number",
+                                        "example": 15000000
+                                    },
+                                    "stok": {
+                                        "type": "integer",
+                                        "example": 10
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Item berhasil dibuat"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            }
+        },
+        "/api/items/{id}": {
+            "get": {
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Tampilkan item berdasarkan ID",
+                "operationId": "7f1ffbd9fa2b704c61ebcccb636ebb27",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Item ditemukan"
+                    },
+                    "404": {
+                        "description": "Item tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Update seluruh data item",
+                "operationId": "4ac9fb55d8a18bd1cba3a29d84f9fd4d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama_barang",
+                                    "harga",
+                                    "stok"
+                                ],
+                                "properties": {
+                                    "nama_barang": {
+                                        "type": "string",
+                                        "example": "Laptop Pro"
+                                    },
+                                    "harga": {
+                                        "type": "number",
+                                        "example": 18000000
+                                    },
+                                    "stok": {
+                                        "type": "integer",
+                                        "example": 5
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Item berhasil diupdate"
+                    },
+                    "404": {
+                        "description": "Item tidak ditemukan"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Hapus item berdasarkan ID",
+                "operationId": "0f88b60b73861d5414f8ea2fedd3dfc3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Item berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Item tidak ditemukan"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Update sebagian data item",
+                "operationId": "8171e1e0bd396fd89495538eb21a8869",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama_barang": {
+                                        "type": "string",
+                                        "example": "Laptop Pro Max"
+                                    },
+                                    "harga": {
+                                        "type": "number",
+                                        "example": 20000000
+                                    },
+                                    "stok": {
+                                        "type": "integer",
+                                        "example": 3
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Item berhasil diupdate sebagian"
+                    },
+                    "404": {
+                        "description": "Item tidak ditemukan"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Item": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nama_barang": {
+                        "type": "string",
+                        "example": "Laptop"
+                    },
+                    "harga": {
+                        "type": "number",
+                        "example": 15000000
+                    },
+                    "stok": {
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2026-04-19 10:00:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2026-04-19 10:00:00"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Items",
+            "description": "Items"
+        }
+    ]
+}
